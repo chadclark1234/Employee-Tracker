@@ -11,6 +11,8 @@ const connection = require("./connection");
 //   first_name: "Andy",
 //   last_name: "Anderson",
 // };
+
+// AUTO UPDATE EMPLOYEE NAME LIST \\
 newEmployee = () => {
   connection.query(
     "insert into employee set ?",
@@ -28,3 +30,21 @@ newEmployee = () => {
 };
 
 // module.exports = newEmployee;
+
+updateNameArr = (namesArr) => {
+  connection.query(
+    "SELECT id,first_name,last_name FROM employee",
+    function (err, res) {
+      if (err) throw err;
+      console.log(res[0].first_name, res[0].last_name);
+      namesArr = [];
+      for (let i = 0; i < res.length; i++) {
+        let fullName = `${res[i].first_name} ${res[i].last_name}`;
+        namesArr.push(fullName);
+      }
+      // console.log(namesArr);
+
+      connection.end();
+    }
+  );
+};
