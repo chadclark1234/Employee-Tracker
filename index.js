@@ -4,7 +4,6 @@ const fs = require("fs");
 const questions = require("./questions");
 const connection = require("./connection");
 const { newEmployee } = require("./questions");
-// const newEmployee = require("./functions.js");
 
 // INITIAL PROMPT FROM MAIN MENU \\
 const start = () => {
@@ -13,7 +12,7 @@ const start = () => {
       case "Add/Remove Employee":
       case "Add/Remove Role":
       case "Add/Remove Department":
-      case "Add/Remove Manager":
+        // case "Add/Remove Manager":
         addRemove(answers.main_menu);
         break;
       case "View All Employees":
@@ -29,7 +28,7 @@ const start = () => {
 
 // FILTERS AND DIRECTS ADD/REMOVE FROM CHOICE \\
 addRemove = (answer) => {
-  console.log(answer);
+  // console.log(answer);
   if (answer === "Add/Remove Employee") {
     inquirer.prompt(questions.addRemoveEmployee).then((answer) => {
       if (answer.add_remove_employee === "Add Employee") {
@@ -41,20 +40,19 @@ addRemove = (answer) => {
       }
     });
   }
-  if (answer === "Add/Remove Manager") {
-    inquirer.prompt(questions.addRemoveManager).then((answer) => {
-      if (answer.add_remove_manager === "Add Manager") {
-        // console.log("add manager");
-        addItem(queryURL);
-      } else {
-        console.log("remove manager");
-      }
-    });
-  }
+  // if (answer === "Add/Remove Manager") {
+  //   inquirer.prompt(questions.addRemoveManager).then((answer) => {
+  //     if (answer.add_remove_manager === "Add Manager") {
+  //       // console.log("add manager");
+  //       addItem(queryURL);
+  //     } else {
+  //       console.log("remove manager");
+  //     }
+  //   });
+  // }
   if (answer === "Add/Remove Role") {
     inquirer.prompt(questions.addRemoveRole).then((answer) => {
       if (answer.add_remove_role === "Add Role") {
-        // console.log("add role");
         addRole();
       } else {
         console.log("remove role");
@@ -65,7 +63,7 @@ addRemove = (answer) => {
     inquirer.prompt(questions.addRemoveDepartment).then((answer) => {
       if (answer.add_remove_department === "Add Department") {
         // console.log("add department");
-        addItem(queryURL);
+        // addItem(queryURL);
       } else {
         console.log("remove department");
       }
@@ -102,20 +100,12 @@ viewAll = (queryURL) => {
 // ASKS NEW EMPLOYEE QUESTIONS AND SENDS TO DB \\
 addEmployee = () => {
   inquirer.prompt(questions.addNewEmployee).then((answer) => {
-    console.log(answer);
+    // console.log(answer);
     // NEW EMPLOYEE OBJECTS \\
     let employee = {
       first_name: answer.first_name,
       last_name: answer.last_name,
     };
-    // let role = {
-    //   title: answer.title,
-    //   salary: answer.salary,
-    // };
-    // let department = {
-    //   department: answer.department,
-    // };
-    // console.log(employee);
 
     // QUERY TO SEND TO DB \\
     connection.query(
@@ -127,9 +117,8 @@ addEmployee = () => {
           console.log(err);
           return;
         }
-        console.log("The inserted id was: ", result.insertId);
-        console.log(result);
-        // start();
+        // console.log("The inserted id was: ", result.insertId);
+        // console.log(result);
         addRole();
       }
     );
@@ -141,10 +130,12 @@ removeEmployee = () => {
   console.log("remove employee function");
 };
 
-// ADD ROLE \\
+// ADD ROLE/DEPARTMENT \\
 const addRole = () => {
+  // CREATES LIST FOR DEPARTMENT QUESTIONS \\
   connection.query("SELECT id,name FROM department", function (err, res) {
     if (err) throw err;
+    // console.log(res);
     const departmentChoices = [];
     for (let i = 0; i < res.length; i++) {
       departmentChoices.push({
@@ -152,11 +143,11 @@ const addRole = () => {
         value: res[i].id,
       });
     }
-    console.log(departmentChoices);
+    // console.log(departmentChoices);
     questions.addRole[2].choices = departmentChoices;
-    console.log(questions.addRole[2].choices);
+    // console.log(questions.addRole[2].choices);
     inquirer.prompt(questions.addRole).then((answers) => {
-      console.log(answers); //destructure line answers line 156
+      // console.log(answers); //destructure line answers line 156
       connection.query(
         "INSERT INTO employee_role set ?",
         {
@@ -170,13 +161,12 @@ const addRole = () => {
             console.log(err);
             return;
           }
-          console.log("The inserted id was: ", result.insertId);
-          console.log(result);
+          // console.log("The inserted id was: ", result.insertId);
+          // console.log(result);
           start();
         }
       );
     });
-    // start();
   });
 };
 

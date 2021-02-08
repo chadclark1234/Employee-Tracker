@@ -1,17 +1,3 @@
-const connection = require("./connection");
-// newEmployee = () => {
-//   var query = con.query(
-//     "INSERT INTO employee(first_name,last_name) values ('John','Anderson'",
-//     function (err, res) {
-//       if (err) throw err;
-//     }
-//   );
-// };
-// var newEmployee = {
-//   first_name: "Andy",
-//   last_name: "Anderson",
-// };
-
 // AUTO UPDATE EMPLOYEE NAME LIST \\
 newEmployee = () => {
   connection.query(
@@ -28,8 +14,6 @@ newEmployee = () => {
     }
   );
 };
-
-// module.exports = newEmployee;
 
 updateNameArr = (namesArr) => {
   connection.query(

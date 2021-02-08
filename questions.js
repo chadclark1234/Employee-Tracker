@@ -8,11 +8,9 @@ const questions = {
       message: "Select what you would like to do",
       choices: [
         "Add/Remove Employee",
-        "Add/Remove Manager",
         "Add/Remove Role",
         "Add/Remove Department",
         "View All Employees",
-        "View All Managers",
         "View All Roles",
         "View All Departments",
         "Exit",
@@ -27,14 +25,6 @@ const questions = {
       choices: ["Add Employee", "Remove Employee"],
     },
   ],
-  // addRemoveManager: [
-  //   {
-  //     type: "list",
-  //     name: "add_remove_manager",
-  //     message: "Select",
-  //     choices: ["Management", "Remove Manager"],
-  //   },
-  // ],
   addRemoveRole: [
     {
       type: "list",
@@ -64,24 +54,6 @@ const questions = {
       message: "Enter employee's last name",
       default: "Gustafson",
     },
-    // {
-    //   type: "list",
-    //   name: "title",
-    //   message: "Select the employee's title",
-    //   choices: ["Assembler", "CSR"],
-    // },
-    // {
-    //   type: "number",
-    //   name: "salary",
-    //   message: "Enter employee's salary",
-    //   default: "55000",
-    // },
-    // {
-    //   type: "list",
-    //   name: "department",
-    //   message: "Select the employee's department",
-    //   choices: ["Assembly", "Customer Service"],
-    // },
   ],
   addRole: [
     {
