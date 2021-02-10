@@ -46,20 +46,26 @@ const questions = {
       type: "input",
       name: "first_name",
       message: "Enter employee's first name",
-      default: "George",
+      default: "Janet",
     },
     {
       type: "input",
       name: "last_name",
       message: "Enter employee's last name",
-      default: "Gustafson",
+      default: "Carlson",
+    },
+    {
+      type: "list",
+      name: "role_id",
+      message: "Select employees title",
+      choices: [],
     },
   ],
   addRole: [
     {
       type: "input",
       name: "title",
-      message: "Enter role title",
+      message: "Enter tile name",
     },
     {
       type: "number",
@@ -72,6 +78,13 @@ const questions = {
       name: "department",
       message: "Select the employee's department",
       choices: [],
+    },
+  ],
+  addDepartment: [
+    {
+      type: "input",
+      name: "add_department",
+      message: "Enter department name",
     },
   ],
 };
